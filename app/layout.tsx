@@ -14,10 +14,9 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-// TODO: Please update the title and description with your personal information
 export const metadata: Metadata = {
-  title: "Portfolio Template",
-  description: "A modern portfolio template for developers and designers",
+  title: "Jailson Ferreira",
+  description: "Dev",
 };
 
 export default function RootLayout({
@@ -26,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="Pt-br">
       <head>
         <script dangerouslySetInnerHTML={{
           __html: `

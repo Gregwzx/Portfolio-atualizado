@@ -6,44 +6,38 @@ import GradientBackground from '../common/GradientBackground'
 import ExperienceModal from './Motal'
 import { useState } from 'react'
 
-// Define experience entry type
 type Experience = {
-  id: number          // Unique identifier
-  title: string       // Position title
-  company: string     // Company name
-  period: string      // Work period
-  logo: string        // Company logo path (stored in public/companyicon/)
-  skills: string[]    // Skills list (corresponding icons stored in public/skills/, filename in lowercase)
-  description: string // Work description
+  id: number
+  title: string
+  company: string
+  period: string
+  logo: string
+  skills: string[]
+  description: string
 }
 
-// Example data
-// Usage instructions:
-// 1. Copy template below and modify content as needed
-// 2. Place logo images in public/companyicon/ directory
-// 3. Skills icons will be automatically fetched from public/skills/ directory
-//    Example: "JavaScript" -> public/skills/javascript.png
-// 4. Recommended to sort experience entries in reverse chronological order
 const experiences: Experience[] = [
   {
     id: 1,
-    title: "Example Position 1",
-    company: "Example Company 1",
-    period: "January 2024 - Present",
-    logo: "/companyicon/company1.png", // Logo image path
-    skills: ["React", "TypeScript", "Node.js"], // Skills list
-    description: "This is a sample work description detailing your main responsibilities and achievements in this role."
+    title: "Estagiário em Banco de Dados & Suporte",
+    company: "Empresa Atual",
+    period: "2025 - Presente",
+    logo: "/companyicon/company1.png",
+    skills: ["SQL", "MySQL", "Suporte Técnico", "Git"],
+    description:
+      "Atuo com suporte técnico e banco de dados, auxiliando na resolução de problemas, validação de informações e apoio aos usuários. Também participo de atividades relacionadas à organização de dados e melhoria de processos internos."
   },
   {
-    id: 2, 
-    title: "Example Position 2",
-    company: "Example Company 2",
-    period: "June 2023 - December 2023",
+    id: 2,
+    title: "Designer Freelancer (Autônomo)",
+    company: "Projetos Próprios",
+    period: "2024 - 2025",
     logo: "/companyicon/company2.png",
-    skills: ["Python", "Django", "PostgreSQL"],
-    description: "This is another sample work description. Consider including specific numbers and achievements."
+    skills: ["UI Design", "HTML", "CSS", "JavaScript"],
+    description:
+      "Trabalhei como freelancer desenvolvendo layouts, slides, interfaces e pequenos desingns para lojas. Foco em criar experiências visuais simples, funcionais e responsivas, sempre buscando melhorar minhas habilidades artisticas."
   }
-];
+]
 
 export default function Experience() {
   const [modalOpen, setModalOpen] = useState(false)
@@ -51,31 +45,12 @@ export default function Experience() {
 
   return (
     <section id="experience" className="container mx-auto px-4 sm:px-8 md:px-12">
-      <div className="
-        min-h-screen
-        flex flex-col items-center justify-center
-        py-16 md:py-20
-        relative
-        overflow-hidden
-      ">
-        {/* Optional gradient background component */}
-        {/* You can adjust background colors by modifying gradientColors */}
-        {/* Examples:
-          Blue theme: start:'#3B82F6' end:'#1E40AF'
-          Green theme: start:'#10B981' end:'#047857'
-          Pink theme: start:'#EC4899' end:'#BE185D'
-        */}
-        <GradientBackground 
-          sectionId="experience"
-          gradientColors={{
-            start: '#7C3AED',  // Light violet
-            end: '#5B21B6'     // Deep violet
-          }}
-        />
+      <div className="min-h-screen flex flex-col items-center justify-center py-16 md:py-20 relative overflow-hidden">
+        <GradientBackground sectionId="experience" />
 
         <AnimatedText>
           <h1 className="text-3xl sm:text-4xl font-bold mb-12 text-center relative z-10">
-            Experience
+            Experiência
           </h1>
         </AnimatedText>
 
@@ -83,23 +58,12 @@ export default function Experience() {
           {experiences.map((experience) => (
             <div key={experience.id}>
               <AnimatedText>
-                <div 
+                <div
                   onClick={() => {
                     setSelectedExperience(experience.id)
                     setModalOpen(true)
                   }}
-                  className="
-                    bg-white/[0.1] dark:bg-black/[0.2]
-                    backdrop-blur-[20px]
-                    rounded-2xl
-                    border border-white/[0.1] dark:border-white/[0.1]
-                    p-6
-                    transition-all duration-300
-                    hover:-translate-y-1
-                    hover:shadow-xl
-                    cursor-pointer
-                    h-full
-                  "
+                  className="bg-white/[0.1] dark:bg-black/[0.2] backdrop-blur-[20px] rounded-2xl border border-white/[0.1] p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer h-full"
                 >
                   <div className="flex items-center gap-4 mb-4">
                     <div className="relative w-12 h-12 rounded-xl overflow-hidden flex-shrink-0">
@@ -110,16 +74,12 @@ export default function Experience() {
                         className="object-cover"
                       />
                     </div>
-                    
+
                     <div className="flex-1">
-                      <h3 className="
-                        text-base sm:text-lg md:text-xl  /* Mobile: 16px, sm:18px, md:20px */
-                        font-bold 
-                        mb-1
-                      ">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold mb-1">
                         {experience.title}
                       </h3>
-                      
+
                       <p className="text-base text-gray-600 dark:text-gray-400">
                         {experience.company}
                       </p>
@@ -129,24 +89,16 @@ export default function Experience() {
                   <p className="text-base text-gray-600 dark:text-gray-400 mb-4">
                     {experience.period}
                   </p>
-                  
+
                   <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
                     {experience.description}
                   </p>
-                  
+
                   <div className="flex flex-wrap gap-2">
                     {experience.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="
-                          px-3 py-1
-                          text-sm
-                          rounded-full
-                          bg-white/[0.05] dark:bg-white/[0.05]
-                          backdrop-blur-[8px]
-                          border border-white/[0.05]
-                          text-gray-600 dark:text-gray-400
-                        "
+                        className="px-3 py-1 text-sm rounded-full bg-white/[0.05] backdrop-blur-[8px] border border-white/[0.05] text-gray-600 dark:text-gray-400"
                       >
                         {skill}
                       </span>

@@ -5,13 +5,7 @@ import Image from 'next/image'
 import { Typography, Container, Box, Card, CardContent, Grid } from '@mui/material'
 import GradientBackground from '../common/GradientBackground'
 
-// Define photo data type
-// Each photo must include:
-// - id: Unique identifier
-// - image: Image path (stored in public/gallery/ directory)
-// - date: Photo date
-// - location: Photo location
-// - description: Photo description
+// Tipo das fotos da galeria
 type Photo = {
   id: number
   image: string
@@ -20,122 +14,180 @@ type Photo = {
   description: string
 }
 
-// Example photo data
-// To add more photos:
-// 1. Place your photo files in public/gallery/ directory
-// 2. Copy the template below and add new photo entries
-// 3. Update the image path, date, location and description
-// 4. Recommended to sort photos in reverse chronological order
+// Fotos da galeria — Spotter Automotivo
+// Coloque as imagens em: public/gallery/
 const photos: Photo[] = [
   {
     id: 1,
-    image: "/gallery/example.jpg",
-    date: "2023.12",
-    location: "Santa Cruz Beach Boardwalk",
-    description: "With UCSC friends"
+    image: '/gallery/car1.jpg',
+    date: '2024',
+    location: 'Evento Automotivo',
+    description: 'Detalhes que fazem a diferença'
+  },
+  {
+    id: 2,
+    image: '/gallery/car2.jpg',
+    date: '2024',
+    location: 'Encontro de carros',
+    description: 'Paixão por máquinas'
+  },
+  {
+    id: 3,
+    image: '/gallery/car3.jpg',
+    date: '2024',
+    location: 'Meet noturno',
+    description: 'Estética e performance'
+  },
+  {
+    id: 4,
+    image: '/gallery/car4.jpg',
+    date: '2024',
+    location: 'Evento regional',
+    description: 'Cada carro conta uma história'
+  },
+  {
+    id: 5,
+    image: '/gallery/car5.jpg',
+    date: '2024',
+    location: 'Spot automotivo',
+    description: 'Ângulos e identidade'
+  },
+  {
+    id: 6,
+    image: '/gallery/car6.jpg',
+    date: '2024',
+    location: 'Exposição',
+    description: 'Design que impressiona'
+  },
+  {
+    id: 7,
+    image: '/gallery/car7.jpg',
+    date: '2024',
+    location: 'Evento outdoor',
+    description: 'Fotografia automotiva'
+  },
+  {
+    id: 8,
+    image: '/gallery/car8.jpg',
+    date: '2024',
+    location: 'Car meet',
+    description: 'Estilo e personalidade'
+  },
+  {
+    id: 9,
+    image: '/gallery/car9.jpg',
+    date: '2024',
+    location: 'Evento especial',
+    description: 'Capturando momentos únicos'
+  },
+  {
+    id: 10,
+    image: '/gallery/car10.jpg',
+    date: '2024',
+    location: 'Spot urbano',
+    description: 'Carros, luzes e atitude'
+  },
+  {
+    id: 11,
+    image: '/gallery/car11.jpg',
+    date: '2024',
+    location: 'Meet urbano',
+    description: 'Linhas que impressionam'
+  },
+  {
+    id: 12,
+    image: '/gallery/car12.jpg',
+    date: '2024',
+    location: 'Evento automotivo',
+    description: 'Capturando a essência'
   }
 ]
 
 export default function Gallery() {
   return (
     <Container id="gallery" maxWidth="xl" component="section">
-      <Box sx={{ 
-        minHeight: '100vh',
-        display: 'flex', 
-        flexDirection: 'column', 
-        alignItems: 'center',
-        justifyContent: 'center',
-        py: { xs: 4, md: 4 },
-        px: { xs: 2, sm: 4, md: 8 },
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        <GradientBackground 
+      <Box
+        sx={{
+          minHeight: '100vh',
+          py: { xs: 6, md: 10 },
+          px: { xs: 2, sm: 4, md: 8 },
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Fundo com gradiente roxo */}
+        <GradientBackground
           sectionId="gallery"
           gradientColors={{
-            start: '#60A5FA',  // Light blue
-            end: '#3B82F6'     // Deep blue
+            start: '#7C3AED',
+            end: '#5B21B6'
           }}
         />
 
+        {/* Título */}
         <AnimatedText>
-          <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-center relative z-10">Gallery</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-center relative z-10">
+            Galeria Automotiva
+          </h1>
         </AnimatedText>
-        
-        <Grid container spacing={{ xs: 2, sm: 3, md: 4 }} sx={{ position: 'relative', zIndex: 1, maxWidth: 'xl' }}>
-          {photos.map((photo, index) => (
-            <Grid item xs={6} sm={4} md={4} key={photo.id} sx={{ 
-              transform: index % 2 === 0 ? 'translateY(40px)' : 'translateY(0)'
-            }}>
+
+        {/* Texto */}
+        <Typography
+          sx={{
+            textAlign: 'center',
+            maxWidth: 700,
+            mx: 'auto',
+            mb: 6,
+            opacity: 0.8,
+            position: 'relative',
+            zIndex: 1
+          }}
+        >
+          Sou apaixonado por carros e, como hobby, atuo como <strong>spotter automotivo</strong>,
+          registrando eventos, encontros e detalhes que tornam cada veículo único.
+          Aqui estão alguns dos meus registros.
+        </Typography>
+
+        {/* Grid */}
+        <Grid container spacing={{ xs: 2, sm: 3, md: 4 }} sx={{ position: 'relative', zIndex: 1 }}>
+          {photos.map((photo) => (
+            <Grid item xs={6} sm={4} md={3} key={photo.id}>
               <AnimatedText>
-                <Card 
+                <Card
                   elevation={0}
                   sx={{
                     height: '100%',
-                    background: theme => theme.palette.mode === 'dark' 
-                      ? 'rgba(0, 0, 0, 0.2)' 
-                      : 'rgba(255, 255, 255, 0.1)',
+                    background: 'rgba(255,255,255,0.08)',
                     backdropFilter: 'blur(20px)',
                     borderRadius: 4,
-                    border: theme => `1px solid ${
-                      theme.palette.mode === 'dark' 
-                        ? 'rgba(255, 255, 255, 0.1)' 
-                        : 'rgba(255, 255, 255, 0.2)'
-                    }`,
-                    transition: 'all 0.3s ease',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    transition: 'all .3s ease',
                     '&:hover': {
-                      transform: 'translateY(-8px)',
-                      background: theme => theme.palette.mode === 'dark'
-                        ? 'rgba(0, 0, 0, 0.3)'
-                        : 'rgba(255, 255, 255, 0.15)',
-                      boxShadow: theme => theme.palette.mode === 'dark'
-                        ? '0 20px 40px rgba(0, 0, 0, 0.3)'
-                        : '0 20px 40px rgba(0, 0, 0, 0.1)',
+                      transform: 'translateY(-6px)',
+                      boxShadow: '0 20px 40px rgba(0,0,0,.25)'
                     }
                   }}
                 >
-                  <CardContent sx={{ 
-                    p: { xs: 1.5, sm: 2, md: 3 }
-                  }}>
-                    <Box sx={{ mb: { xs: 1, sm: 1.5, md: 2 } }}>
+                  <CardContent sx={{ p: 2 }}>
+                    <Box sx={{ mb: 1.5 }}>
                       <Image
                         src={photo.image}
                         alt={photo.description}
-                        width={400}
-                        height={300}
+                        width={500}
+                        height={350}
                         className="rounded-lg object-cover w-full"
                       />
                     </Box>
-                    <Typography variant="body1" sx={{ 
-                      fontWeight: 500,
-                      mb: { xs: 0.5, sm: 0.75, md: 1 },
-                      fontSize: { 
-                        xs: '0.875rem',
-                        sm: '1rem',
-                        md: '1.125rem'
-                      }
-                    }}>
+
+                    <Typography sx={{ fontWeight: 600 }}>
                       {photo.location}
                     </Typography>
-                    <Typography variant="body2" sx={{ 
-                      opacity: 0.7,
-                      fontSize: { 
-                        xs: '0.75rem',
-                        sm: '0.875rem',
-                        md: '1rem'
-                      }
-                    }}>
+
+                    <Typography variant="body2" sx={{ opacity: 0.7 }}>
                       {photo.date}
                     </Typography>
-                    <Typography variant="body2" sx={{ 
-                      opacity: 0.7,
-                      mt: { xs: 0.5, sm: 0.75, md: 1 },
-                      fontSize: { 
-                        xs: '0.75rem',
-                        sm: '0.875rem',
-                        md: '1rem'
-                      }
-                    }}>
+
+                    <Typography variant="body2" sx={{ opacity: 0.7, mt: 0.5 }}>
                       {photo.description}
                     </Typography>
                   </CardContent>
@@ -147,4 +199,4 @@ export default function Gallery() {
       </Box>
     </Container>
   )
-} 
+}

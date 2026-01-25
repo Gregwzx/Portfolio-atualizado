@@ -7,35 +7,40 @@ export default function About() {
     <section id="about" className="min-h-screen w-full flex items-center justify-center p-8">
       <div className="max-w-2xl space-y-12">
         <AnimatedText>
-          <h1 className="text-4xl font-bold mb-8">About Me</h1>
+          <h1 className="text-4xl font-bold mb-8">Sobre mim</h1>
         </AnimatedText>
 
         <div className="space-y-8">
           <AnimatedText>
             <div className="space-y-4">
               <p className="text-lg text-foreground/80 leading-relaxed">
-                Here, you can introduce your basic background information. Include your name, major, education and other basic information. This is an excellent place to showcase your personal characteristics.
+                Meu nome é Jailson Ferreira, e sou estudante de Análise e desenvolvimento de sistemas, sou focado principalmente em back-end / java (java no sangue e café na mesa kk). 
+                Mas também gosto de transformar ideias em interfaces reais usando HTML, CSS, JavaScript e React.
               </p>
+
               <p className="text-lg text-foreground/80 leading-relaxed">
-                You can describe your professional skills and experience in detail. Highlight your tech stack, project experience, and achievements in relevant fields. This information will help visitors better understand your professional capabilities.
+                Estou sempre buscando evoluir, entender cada parte do código que escrevo e criar projetos que realmente façam sentido.
+                Atualmente estudo Java e desenvolvimento web, com o objetivo de conquistar minha primeira oportunidade como desenvolvedor.
               </p>
             </div>
           </AnimatedText>
 
           <AnimatedText>
             <div className="space-y-4">
-              <h2 className="text-2xl font-semibold">Personal Interests</h2>
+              <h2 className="text-2xl font-semibold">Interesses</h2>
               <p className="text-lg text-foreground/80 leading-relaxed">
-                In this section, you can share your personal interests and hobbies. This content can make your profile more vibrant and showcase your unique personality traits.
+                Curto bastante programação, design de interfaces, criação de projetos pessoais e aprender novas tecnologias.
+                Também gosto de games e desafios de lógica, que acabam ajudando bastante no raciocínio.
               </p>
             </div>
           </AnimatedText>
 
           <AnimatedText>
             <div className="space-y-4">
-              <h2 className="text-2xl font-semibold">Career Goals</h2>
+              <h2 className="text-2xl font-semibold">Objetivos</h2>
               <p className="text-lg text-foreground/80 leading-relaxed">
-                Here you can describe your career development plans and goals. Clearly express the types of opportunities you are looking for and the goals you hope to achieve in your future career.
+                Meu principal objetivo é entrar na área como desenvolvedor, ganhar experiência prática e evoluir profissionalmente.
+                Quero participar de projetos reais, aprender com outras pessoas da área e crescer junto com a empresa.
               </p>
             </div>
           </AnimatedText>

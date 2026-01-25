@@ -12,15 +12,15 @@ export default function Hero() {
         <AnimatedText className="flex flex-col items-center sm:items-start gap-4">
           <Image
             className="rounded-full"
-            src="/avatar.jpg" // Replace with your avatar image path in public folder
+            src="/avatar.png" // Replace with your avatar image path in public folder
             alt="Profile Picture"
             width={120}
             height={120}
             priority
           />
-          <h1 className="text-4xl font-bold">Your Name</h1>
+          <h1 className="text-4xl font-bold">Jailson Ferreira</h1>
           <p className="text-lg text-foreground/80 font-[family-name:var(--font-geist-mono)]">
-            Your Job Title
+            Dev full stack
           </p>
         </AnimatedText>
 
@@ -28,7 +28,10 @@ export default function Hero() {
           className="max-w-2xl text-center sm:text-left"
         >
           <p className="text-foreground/80 leading-relaxed">
-            Write a brief self-introduction here, including your educational background, job objectives, or current work status.
+            Eae tudo certo?
+          </p>
+          <p className="text-foreground/80 leading-relaxed">
+            Seja bem vindo ao meu portfolio fique a vontade para fuçar kk.
           </p>
         </AnimatedText>
 
@@ -46,7 +49,7 @@ export default function Hero() {
               px-5                                   // Fixed padding
               text-base                              // Fixed font size
             "
-            href="https://github.com/your-username" // Replace with your GitHub profile link
+            href="https://github.com/Gregwzx" // Replace with your GitHub profile link
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -82,7 +85,7 @@ export default function Hero() {
               height={20}
               sizes="20px"
             />
-            View Resume
+            Curriculo
           </a>
         </AnimatedText>
       </main>
@@ -92,7 +95,7 @@ export default function Hero() {
       >
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="mailto:your-email" // Replace with your email address
+          href="mailto:jailsonjuniorcom12@gmail.com" // Replace with your email address
         >
           <Image
             aria-hidden
@@ -102,11 +105,11 @@ export default function Hero() {
             width={16}
             height={16}
           />
-          Send Email
+          Enviar Email
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://www.linkedin.com/in/your-username" // Replace with your LinkedIn profile link
+          href="https://www.linkedin.com/in/jailson-ferreira-104352348/" // Replace with your LinkedIn profile link
           target="_blank"
           rel="noopener noreferrer"
         >

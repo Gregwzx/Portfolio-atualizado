@@ -1,7 +1,4 @@
 'use client'
-
-// Step 1: Import necessary components
-// You can find all component files in the /components directory
 import Hero from "./components/sections/Hero"
 import About from "./components/sections/About"
 import CourseTimeline from "./components/education/CourseTimeline" 
@@ -12,14 +9,7 @@ import { Box } from '@mui/material'
 import Projects from './components/sections/Projects'
 import Gallery from './components/sections/Gallery'
 
-// Step 2: Choose your template version
-// For Researcher Template: uncomment these imports
-// import Research from './components/sections/Research'
-// import Teaching from './components/sections/TeachingExperience'
 
-// Step 3: Configure your website sections
-// You can add/remove/reorder sections by modifying the components below
-// Make sure section IDs match with navigation items in /components/common/Navbar.tsx
 export default function Home() {
   return (
     <>
