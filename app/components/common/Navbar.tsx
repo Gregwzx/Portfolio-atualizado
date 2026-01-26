@@ -21,7 +21,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = document.querySelectorAll("section[id]")
+      const sections = document.querySelectorAll<HTMLElement>("section")
       const scrollPosition = window.scrollY + NAVBAR_HEIGHT + 100
 
       sections.forEach((section) => {
