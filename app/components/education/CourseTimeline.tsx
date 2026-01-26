@@ -10,43 +10,38 @@ interface CourseItem {
   description: string
 }
 
-// Example course data - Replace with your own education experience
 const courses: CourseItem[] = [
   {
-    date: "2023 - Present",
-    title: "Your University Name",
-    description: "Your Major | GPA: X.XX"
+    date: "Concluído",
+    title: "Ensino Médio Completo – Fundação Bradesco",
+    description: "Formação básica completa"
   },
   {
-    date: "Fall 2023",
-    title: "Course Name 1",
-    description: "Keyword1 | Keyword2 | Keyword3"
+    date: "Cursando",
+    title: "UNINASSAU – Análise e Desenvolvimento de Sistemas",
+    description: "Curso Superior em Tecnologia"
   },
   {
-    date: "Spring 2024", 
-    title: "Course Name 2",
-    description: "Keyword1 | Keyword2 | Keyword3"
+    date: "Certificação",
+    title: "AWS Cloud Fundamentals",
+    description: "Fundamentos de computação em nuvem | Serviços AWS | Conceitos Cloud"
   },
   {
-    date: "Fall 2024",
-    title: "Course Name 3",
-    description: "Keyword1 | Keyword2 | Keyword3"
+    date: "Certificação",
+    title: "Fundamentos de AWS",
+    description: "EC2 | S3 | IAM | Arquitetura básica na AWS"
   },
   {
-    date: "Spring 2025",
-    title: "Course Name 4", 
-    description: "Keyword1 | Keyword2 | Keyword3"
+    date: "Certificado",
+    title: "Java – Fundamentos",
+    description: "Lógica de programação | Orientação a Objetos | Sintaxe Java"
+  },
+  {
+    date: "Certificado",
+    title: "Power BI",
+    description: "Visualização de dados | Dashboards | Análise de dados"
   }
 ]
-
-// Usage Instructions:
-// 1. Add your course information in the courses array above
-// 2. Each course item contains:
-//    - date: Course time
-//    - title: Course name
-//    - description: Course description (keywords recommended)
-// 3. Timeline will automatically display based on array length
-// 4. "Show More" button appears when more than 5 courses
 
 export default function CourseTimeline() {
   const [showAll, setShowAll] = useState(false)
@@ -56,55 +51,45 @@ export default function CourseTimeline() {
     setShowAll(false)
     const educationSection = document.getElementById('education')
     if (educationSection) {
-      const yOffset = -60;
-      const y = educationSection.getBoundingClientRect().top + window.pageYOffset + yOffset
+      const yOffset = -60
+      const y =
+        educationSection.getBoundingClientRect().top +
+        window.pageYOffset +
+        yOffset
       window.scrollTo({ top: y, behavior: 'smooth' })
     }
   }
 
   return (
     <div className="w-full">
-      {/* Timeline container */}
       <div className="relative">
-        {/* Timeline background line */}
         <div className="absolute left-1/2 top-0 w-[2px] h-full bg-neutral-200 dark:bg-neutral-800 z-0" />
-        
-        {/* Timeline items */}
+
         {displayedCourses.map((course, index) => (
           <AnimatedText key={index}>
-            <div className={`
-              flex items-center gap-4 sm:gap-6 md:gap-8 mb-12 
-              ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}
-              relative z-10
-            `}>
+            <div
+              className={`
+                flex items-center gap-4 sm:gap-6 md:gap-8 mb-12 
+                ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}
+                relative z-10
+              `}
+            >
               <div className="flex-1 text-center">
-                <h3 className="
-                  text-base                              /* Mobile: 16px */
-                  sm:text-lg md:text-xl                 /* sm: 18px, md: 20px */
-                  font-bold 
-                  mb-2
-                ">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">
                   {course.title}
                 </h3>
-                <p className="
-                  text-xs                               /* Mobile: 12px */
-                  sm:text-sm md:text-base              /* sm: 14px, md: 16px */
-                  text-foreground/60 
-                  mb-1
-                ">
+
+                <p className="text-xs sm:text-sm md:text-base text-foreground/60 mb-1">
                   {course.date}
                 </p>
-                <p className="
-                  text-xs                               /* Mobile: 12px */
-                  sm:text-sm md:text-base              /* sm: 14px, md: 16px */
-                  text-foreground/80
-                ">
+
+                <p className="text-xs sm:text-sm md:text-base text-foreground/80">
                   {course.description}
                 </p>
               </div>
-              
+
               <div className="relative z-20">
-                <motion.div 
+                <motion.div
                   className="w-3 h-3 sm:w-4 sm:h-4 bg-black dark:bg-white rounded-full"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
@@ -116,14 +101,13 @@ export default function CourseTimeline() {
                   }}
                 />
               </div>
-              
+
               <div className="flex-1" />
             </div>
           </AnimatedText>
         ))}
       </div>
 
-      {/* Buttons outside timeline container */}
       {!showAll && courses.length > 5 && (
         <AnimatedText>
           <div className="flex justify-center mt-8">
@@ -135,15 +119,14 @@ export default function CourseTimeline() {
                 p-4
                 transition-transform duration-300
                 hover:scale-110
-                z-0
                 flex items-center gap-2
               "
             >
               Show More
-              <svg 
-                className="w-5 h-5 stroke-black dark:stroke-white" 
-                viewBox="0 0 24 24" 
-                fill="none" 
+              <svg
+                className="w-5 h-5 stroke-black dark:stroke-white"
+                viewBox="0 0 24 24"
+                fill="none"
                 strokeWidth="2"
               >
                 <path d="M19 9l-7 7-7-7" />
@@ -164,15 +147,14 @@ export default function CourseTimeline() {
                 p-4
                 transition-transform duration-300
                 hover:scale-110
-                z-0
                 flex items-center gap-2
               "
             >
               Show Less
-              <svg 
-                className="w-5 h-5 stroke-black dark:stroke-white" 
-                viewBox="0 0 24 24" 
-                fill="none" 
+              <svg
+                className="w-5 h-5 stroke-black dark:stroke-white"
+                viewBox="0 0 24 24"
+                fill="none"
                 strokeWidth="2"
               >
                 <path d="M5 15l7-7 7 7" />

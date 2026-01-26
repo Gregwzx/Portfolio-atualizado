@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { Typography, Container, Box, Card, CardContent, Grid } from '@mui/material'
 import GradientBackground from '../common/GradientBackground'
 
-// Tipo das fotos da galeria
 type Photo = {
   id: number
   image: string
@@ -14,92 +13,90 @@ type Photo = {
   description: string
 }
 
-// Fotos da galeria — Spotter Automotivo
-// Coloque as imagens em: public/gallery/
 const photos: Photo[] = [
   {
     id: 1,
-    image: '/gallery/car1.jpg',
-    date: '2024',
-    location: 'Evento Automotivo',
-    description: 'Detalhes que fazem a diferença'
+    image: '/gallery/car1.png',
+    date: '2025',
+    location: 'Racing experience',
+    description: 'Um belo angulo não acha ? kk'
   },
   {
     id: 2,
-    image: '/gallery/car2.jpg',
+    image: '/gallery/car2.png',
     date: '2024',
-    location: 'Encontro de carros',
-    description: 'Paixão por máquinas'
+    location: 'Encontro PEEX, 11º edição',
+    description: 'Essa amarelinha é linda d+'
   },
   {
     id: 3,
-    image: '/gallery/car3.jpg',
+    image: '/gallery/car3.png',
     date: '2024',
-    location: 'Meet noturno',
-    description: 'Estética e performance'
+    location: 'Encontro PEEX, 11º edição',
+    description: 'Talvez a minha melhor foto de bmw'
   },
   {
     id: 4,
-    image: '/gallery/car4.jpg',
-    date: '2024',
-    location: 'Evento regional',
-    description: 'Cada carro conta uma história'
+    image: '/gallery/car4.png',
+    date: '2025',
+    location: 'Racing Experience',
+    description: 'Essa lambo é linda, pena que o piloto não sou eu'
   },
   {
     id: 5,
-    image: '/gallery/car5.jpg',
+    image: '/gallery/car5.png',
     date: '2024',
-    location: 'Spot automotivo',
-    description: 'Ângulos e identidade'
+    location: 'Encontro PEEX, 11º edição',
+    description: 'Linda porshe, mais azul que isso impossível'
   },
   {
     id: 6,
-    image: '/gallery/car6.jpg',
-    date: '2024',
-    location: 'Exposição',
-    description: 'Design que impressiona'
+    image: '/gallery/car6.png',
+    date: '2025',
+    location: 'Encontro PEEX, 11º edição',
+    description: 'ferrari bem aesthetic'
   },
   {
     id: 7,
-    image: '/gallery/car7.jpg',
+    image: '/gallery/car7.png',
     date: '2024',
-    location: 'Evento outdoor',
-    description: 'Fotografia automotiva'
+    location: 'Racing Experience',
+    description: 'Direto dos boxes'
   },
   {
     id: 8,
-    image: '/gallery/car8.jpg',
-    date: '2024',
-    location: 'Car meet',
-    description: 'Estilo e personalidade'
+    image: '/gallery/car8.png',
+    date: '2025',
+    location: 'Racing Experience',
+    description: 'apenas: 👍'
   },
   {
     id: 9,
-    image: '/gallery/car9.jpg',
-    date: '2024',
-    location: 'Evento especial',
-    description: 'Capturando momentos únicos'
+    image: '/gallery/car9.png',
+    date: '2025',
+    location: 'Racing Experience',
+    description: 'Olha essa comissão de frente'
   },
   {
     id: 10,
-    image: '/gallery/car10.jpg',
+    image: '/gallery/car10.png',
     date: '2024',
-    location: 'Spot urbano',
-    description: 'Carros, luzes e atitude'
+    location: 'Encontro PEEX, 11º edição',
+    description: ' "i found my love in Portofino" '
   },
   {
     id: 11,
-    image: '/gallery/car11.jpg',
-    date: '2024',
-    location: 'Meet urbano',
-    description: 'Linhas que impressionam'
+    image: '/gallery/car11.png',
+    date: '2026',
+    location: 'Spott urbano',
+    description: 'Mídia demais'
   },
   {
     id: 12,
-    image: '/gallery/car12.jpg',
-    date: '2024',
-    location: 'Evento automotivo',
-    description: 'Capturando a essência'
+    image: '/gallery/car14.png',
+    date: '2025',
+    location: 'Racing Experience',
+    description: 'Melhor ft do evento, esqueça tudo'
   }
 ]
 
@@ -112,10 +109,9 @@ export default function Gallery() {
           py: { xs: 6, md: 10 },
           px: { xs: 2, sm: 4, md: 8 },
           position: 'relative',
-          overflow: 'hidden',
+          overflow: 'hidden'
         }}
       >
-        {/* Fundo com gradiente roxo */}
         <GradientBackground
           sectionId="gallery"
           gradientColors={{
@@ -124,14 +120,12 @@ export default function Gallery() {
           }}
         />
 
-        {/* Título */}
         <AnimatedText>
           <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-center relative z-10">
-            Galeria Automotiva
+            Meus Spotts
           </h1>
         </AnimatedText>
 
-        {/* Texto */}
         <Typography
           sx={{
             textAlign: 'center',
@@ -140,7 +134,8 @@ export default function Gallery() {
             mb: 6,
             opacity: 0.8,
             position: 'relative',
-            zIndex: 1
+            zIndex: 1,
+            color: '#fff'
           }}
         >
           Sou apaixonado por carros e, como hobby, atuo como <strong>spotter automotivo</strong>,
@@ -148,7 +143,6 @@ export default function Gallery() {
           Aqui estão alguns dos meus registros.
         </Typography>
 
-        {/* Grid */}
         <Grid container spacing={{ xs: 2, sm: 3, md: 4 }} sx={{ position: 'relative', zIndex: 1 }}>
           {photos.map((photo) => (
             <Grid item xs={6} sm={4} md={3} key={photo.id}>
@@ -179,15 +173,15 @@ export default function Gallery() {
                       />
                     </Box>
 
-                    <Typography sx={{ fontWeight: 600 }}>
+                    <Typography sx={{ fontWeight: 600, color: '#fff' }}>
                       {photo.location}
                     </Typography>
 
-                    <Typography variant="body2" sx={{ opacity: 0.7 }}>
+                    <Typography variant="body2" sx={{ color: '#fff', mt: 0.3 }}>
                       {photo.date}
                     </Typography>
 
-                    <Typography variant="body2" sx={{ opacity: 0.7, mt: 0.5 }}>
+                    <Typography variant="body2" sx={{ color: '#fff', mt: 0.5 }}>
                       {photo.description}
                     </Typography>
                   </CardContent>

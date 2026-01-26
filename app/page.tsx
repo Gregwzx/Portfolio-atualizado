@@ -33,7 +33,7 @@ export default function Home() {
             alignItems: 'center',
             p: 4,
           }}>
-            <h1 className="text-4xl font-bold mb-12 text-center">Education</h1>
+            <h1 className="text-4xl font-bold mb-12 text-center">Formação</h1>
             <CourseTimeline />
           </Box>
         </section>
