@@ -1,22 +1,24 @@
 'use client'
 
 import { useState, useEffect, useRef } from "react"
-import React from 'react'
+import React from "react"
 
 const navItems = [
   { name: "Início", href: "#home" },
   { name: "Sobre", href: "#about" },
-  { name: "Habilidades", href: "#skills"},
+  { name: "Habilidades", href: "#skills" },
   { name: "Formação", href: "#education" },
-  { name: "Experiência", href: "#experience"},
-  { name: "Projetos", href: "#projects"},
-  { name: "Galeria", href: "#gallery"},
+  { name: "Experiência", href: "#experience" },
+  { name: "Projetos", href: "#projects" },
+  { name: "Galeria", href: "#gallery" },
 ]
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home")
-  const underlineRef = useRef(null)
-  const navRef = useRef<HTMLElement | null>(null)
+
+  const navRef = useRef<HTMLUListElement | null>(null)
+  const underlineRef = useRef<HTMLDivElement | null>(null)
+
   const NAVBAR_HEIGHT = 60
 
   useEffect(() => {
@@ -43,21 +45,23 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    const activeItem = navRef.current?.querySelector(
+    if (!navRef.current || !underlineRef.current) return
+
+    const activeItem = navRef.current.querySelector(
       `a[href="#${activeSection}"]`
-    )
+    ) as HTMLElement | null
 
-    if (activeItem && underlineRef.current && navRef.current) {
-      const rect = activeItem.getBoundingClientRect()
-      const navRect = navRef.current.getBoundingClientRect()
+    if (!activeItem) return
 
-      underlineRef.current.style.left = `${rect.left - navRect.left}px`
-      underlineRef.current.style.width = `${rect.width}px`
-    }
+    const rect = activeItem.getBoundingClientRect()
+    const navRect = navRef.current.getBoundingClientRect()
+
+    underlineRef.current.style.left = `${rect.left - navRect.left}px`
+    underlineRef.current.style.width = `${rect.width}px`
   }, [activeSection])
 
-  const scrollToSection = (href) => {
-    const target = document.querySelector(href)
+  const scrollToSection = (href: string) => {
+    const target = document.querySelector(href) as HTMLElement | null
 
     if (target) {
       const targetPosition = target.offsetTop - NAVBAR_HEIGHT
