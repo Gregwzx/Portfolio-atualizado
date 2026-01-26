@@ -16,7 +16,7 @@ const navItems = [
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home")
   const underlineRef = useRef(null)
-  const navRef = useRef(null)
+  const navRef = useRef<HTMLElement | null>(null)
   const NAVBAR_HEIGHT = 60
 
   useEffect(() => {
