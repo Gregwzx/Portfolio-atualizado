@@ -1,0 +1,623 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   ROOT DESIGN TOKENS
+   ============================================================ */
+:root {
+  --background: #080808;
+  --surface: #0f0f0f;
+  --surface-2: #121212;
+  --accent: #a855f7;
+  --accent-rgb: 168 85 247;
+  --accent-dim: rgba(168, 85, 247, 0.15);
+  --accent-glow: rgba(168, 85, 247, 0.08);
+  --text-primary: #f0f0f0;
+  --text-secondary: #666666;
+  --text-muted: #2a2a2a;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-accent: rgba(168, 85, 247, 0.3);
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+[data-theme='purple'], :root:not([data-theme]) {
+  --accent: #a855f7;
+  --accent-rgb: 168 85 247;
+  --accent-dim: rgba(168, 85, 247, 0.15);
+  --accent-glow: rgba(168, 85, 247, 0.08);
+  --border-accent: rgba(168, 85, 247, 0.3);
+}
+
+[data-theme='green'] {
+  --accent: #00f5c4;
+  --accent-rgb: 0 245 196;
+  --accent-dim: rgba(0, 245, 196, 0.15);
+  --accent-glow: rgba(0, 245, 196, 0.08);
+  --border-accent: rgba(0, 245, 196, 0.3);
+}
+
+[data-theme='blue'] {
+  --accent: #00d2ff;
+  --accent-rgb: 0 210 255;
+  --accent-dim: rgba(0, 210, 255, 0.15);
+  --accent-glow: rgba(0, 210, 255, 0.08);
+  --border-accent: rgba(0, 210, 255, 0.3);
+}
+
+/* ============================================================
+   BASE RESET
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles this */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  cursor: none; /* Custom cursor */
+}
+
+/* Restore cursor on mobile */
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+}
+
+/* Hide scrollbar but keep scrolling */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #1a1a1a #080808;
+}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #080808; }
+::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 2px; }
+
+/* ============================================================
+   GRAIN OVERLAY
+   ============================================================ */
+.grain-overlay {
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.035;
+  animation: grain 8s steps(10) infinite;
+  mix-blend-mode: overlay;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-2%, -3%); }
+  20% { transform: translate(3%, 1%); }
+  30% { transform: translate(-1%, 4%); }
+  40% { transform: translate(4%, -2%); }
+  50% { transform: translate(-3%, 3%); }
+  60% { transform: translate(2%, -4%); }
+  70% { transform: translate(-4%, 1%); }
+  80% { transform: translate(1%, -1%); }
+  90% { transform: translate(-2%, 4%); }
+}
+
+/* ============================================================
+   GRID BACKGROUND
+   ============================================================ */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+.cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease, opacity 0.3s ease;
+  will-change: transform;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+  will-change: transform;
+}
+
+.cursor-ring.hovered {
+  width: 56px;
+  height: 56px;
+  border-color: var(--accent);
+  background: var(--accent-glow);
+}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+.font-mono { font-family: var(--font-mono); }
+.font-sans { font-family: var(--font-sans); }
+
+.text-accent { color: var(--accent); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+
+.label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.heading-display {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+}
+
+/* ============================================================
+   CLIP PATH REVEAL ANIMATION
+   ============================================================ */
+.clip-reveal {
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  transition: clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.clip-reveal.revealed {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* ============================================================
+   SECTION BASE
+   ============================================================ */
+.section {
+  position: relative;
+  padding: 8rem 0;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  .section {
+    padding: 5rem 0;
+  }
+}
+
+/* ============================================================
+   BORDER GLOW EFFECTS
+   ============================================================ */
+.border-glow {
+  border: 1px solid var(--border);
+  box-shadow: 0 0 30px rgba(0, 245, 196, 0.03);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.border-glow:hover {
+  border-color: var(--border-accent);
+  box-shadow: 0 0 30px rgba(0, 245, 196, 0.08);
+}
+
+/* ============================================================
+   ACCENT GLOW PULSE
+   ============================================================ */
+.accent-glow {
+  position: relative;
+}
+
+.accent-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0, 245, 196, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ============================================================
+   TECHNICAL BADGE
+   ============================================================ */
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.2s ease;
+}
+
+.tech-badge:hover,
+.tech-badge.active {
+  border-color: var(--border-accent);
+  color: var(--accent);
+  background: var(--accent-glow);
+}
+
+.tech-badge.learning {
+  border-style: dashed;
+  opacity: 0.6;
+}
+
+/* ============================================================
+   STATUS INDICATOR
+   ============================================================ */
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.status-dot.offline {
+  background: #666;
+  box-shadow: none;
+  animation: none;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--accent); }
+  50% { opacity: 0.5; box-shadow: 0 0 16px var(--accent); }
+}
+
+/* ============================================================
+   TERMINAL LOG COMPONENT
+   ============================================================ */
+.terminal {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1.8;
+}
+
+.terminal-line {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+.terminal-prompt { color: var(--accent); }
+.terminal-cmd { color: var(--text-primary); }
+.terminal-output { color: var(--text-secondary); padding-left: 1.5rem; }
+.terminal-error { color: #ff6b6b; }
+.terminal-success { color: var(--accent); }
+.terminal-cursor { 
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background: var(--accent);
+  animation: blink 1.2s step-end infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ============================================================
+   MAGNETIC BUTTON
+   ============================================================ */
+.magnetic-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2.5rem;
+  border: 1px solid var(--border-accent);
+  background: transparent;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.magnetic-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+}
+
+.magnetic-btn:hover::before {
+  transform: scaleX(1);
+}
+
+.magnetic-btn:hover {
+  color: #080808;
+  box-shadow: 0 0 40px rgba(0, 245, 196, 0.2);
+}
+
+.magnetic-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   SCROLL INDICATOR
+   ============================================================ */
+.scroll-indicator {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 100;
+}
+
+.scroll-indicator-bar {
+  width: 1px;
+  height: 60px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-indicator-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--accent);
+  transition: height 0.1s ease;
+}
+
+/* ============================================================
+   SECTION DIVIDER
+   ============================================================ */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* ============================================================
+   HORIZONTAL SCROLL SECTION
+   ============================================================ */
+.h-scroll-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.h-scroll-track {
+  display: flex;
+  flex-direction: row;
+  will-change: transform;
+}
+
+.h-scroll-panel {
+  flex-shrink: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   PROJECT CARD (IN HORIZONTAL SCROLL)
+   ============================================================ */
+.project-panel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  padding: 0 8rem;
+}
+
+@media (max-width: 1024px) {
+  .project-panel {
+    grid-template-columns: 1fr;
+    padding: 0 2rem;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+
+/* ============================================================
+   ARCHITECTURE NODES (DEVTRACK)
+   ============================================================ */
+.arch-node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.arch-node-box {
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.arch-node-box:hover,
+.arch-node-box.active {
+  border-color: var(--border-accent);
+  background: var(--accent-glow);
+  color: var(--accent);
+  box-shadow: 0 0 30px rgba(0, 245, 196, 0.1);
+}
+
+/* ============================================================
+   TECH STACK CONSTELLATION
+   ============================================================ */
+.tech-constellation {
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+}
+
+.tech-node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: default;
+  transition: transform 0.3s ease;
+}
+
+.tech-node:hover {
+  transform: scale(1.1);
+}
+
+.tech-node-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: all 0.3s ease;
+}
+
+.tech-node:hover .tech-node-icon {
+  border-color: var(--border-accent);
+  background: var(--accent-glow);
+}
+
+/* ============================================================
+   GITHUB DASHBOARD
+   ============================================================ */
+.github-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.github-card:hover {
+  border-color: var(--border-accent);
+  background: var(--surface-2);
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.copy-email-btn {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  cursor: none;
+  transition: color 0.3s ease;
+}
+
+.copy-email-btn:hover {
+  color: var(--accent);
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .grain-overlay {
+    display: none;
+  }
+}
+
+/* ============================================================
+   SELECTION
+   ============================================================ */
+::selection {
+  background: rgba(0, 245, 196, 0.15);
+  color: var(--accent);
+}
+
+/* ============================================================
+   LINK RESET
+   ============================================================ */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============================================================
+   GLOW TEXT
+   ============================================================ */
+.glow-text {
+  text-shadow: 0 0 30px rgba(0, 245, 196, 0.3);
+}
+
+/* ============================================================
+   NUMBER TICKER ANIMATION
+   ============================================================ */
+.ticker-wrap {
+  overflow: hidden;
+  height: 1em;
+}
